@@ -45,8 +45,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.3213677, y: 1.9772438, z: 1.9576283}
-  m_Center: {x: 4.188427, y: -0.08933407, z: -0.012419462}
+  m_Size: {x: 1.7117047, y: 1.9772437, z: 6.57459}
+  m_Center: {x: 0.06393666, y: -0.08933408, z: 3.9312153}
 --- !u!54 &-4670110313600936764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfRocket: 1
+  damage: 1
   baseSpeed: 5600
   rigidbody: {fileID: -4670110313600936764}
 --- !u!1 &5423231933888416171
@@ -103,13 +104,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5423231933888416171}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6145494317360036030}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 90}
 --- !u!33 &7832240453311663389
 MeshFilter:
   m_ObjectHideFlags: 0

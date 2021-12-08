@@ -8,7 +8,7 @@ public class RocketLuncher : MonoBehaviour
     [SerializeField] float reaoladTime = 0.3f;
     float lastTimeShot = 0;
 
-    protected void Spwan(Vector3 rotation)
+    public void Spwan(Vector3 rotation)
     {
         if (lastTimeShot > Time.time) return;
         

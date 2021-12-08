@@ -12,11 +12,15 @@ public class PlayerMovment : PlayerInput
     {
         if(input.Is_A_Press)
         {
-            rigidbody.velocity = Vector3.forward * speed;
+            rigidbody.velocity = Vector3.left * speed;
         }
-        if(input.Is_D_Press)
+        else if(input.Is_D_Press)
         {
-            rigidbody.velocity = Vector3.back * speed;
+            rigidbody.velocity = Vector3.right * speed;
+        }
+        else
+        {
+            rigidbody.velocity = Vector3.zero;
         }
     }
 }

@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameMangaer : MonoBehaviour
 {
-    [SerializeField]
     public string PlayerNick
     {
         get => playerNick;
@@ -13,19 +13,21 @@ public class GameMangaer : MonoBehaviour
         {
             if (value != "")
             {
-                value = playerNick;
-
+                playerNick = value;
             }
             else
             {
                 Debug.Log("PlayerNick was empty and it's automatically set to: " + DefultName);
-                value = DefultName;
+                playerNick = DefultName;
             }
         }
     }
-    [SerializeField]
-    private string playerNick = DefultName;
+    [SerializeField] private string playerNick = DefultName;
     private const string DefultName = "NoName";
+
+    public int Score { get => score; }
+    private int score = 0;
+
 
     public static GameMangaer Instance
     {
@@ -37,17 +39,30 @@ public class GameMangaer : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Instance of GameMenager is Null");
                 return null;
             }
         } 
     }
     private static GameMangaer instance;
 
+    public event Action<int> OnScoreChange = delegate { };
     private void Awake()
     {
         SetThisInstanceToStaticIfInstaneIsNull();
     }
+
+    public void AddOneToScore()
+    {
+        score++;
+        OnScoreChange.Invoke(score);
+    }
+
+    public void ZeroScore()
+    {
+        score = 0;
+        OnScoreChange.Invoke(score);
+    }
+
 
     private void SetThisInstanceToStaticIfInstaneIsNull()
     {
@@ -61,4 +76,6 @@ public class GameMangaer : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
 }
