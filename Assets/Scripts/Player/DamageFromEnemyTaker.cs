@@ -6,7 +6,7 @@ public class DamageFromEnemyTaker : MonoBehaviour
 {
     [SerializeField] PlayerHp playerHp;
 
-    public bool IsItPlayer { get; }
+    public bool IsItPlayer { get => isItPlayer; }
     [SerializeField] private bool isItPlayer = false;
 
 

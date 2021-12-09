@@ -20,11 +20,11 @@ public class PlayerHp : MonoBehaviour
     [SerializeField] private int hp;
 
     public UnityEvent OnPlayerDie;
-    public UnityEvent OnGetDamage;
+    public UnityEvent<int> OnGetDamage;
 
     public void GetDamage(int damage)
     {
         Hp-= damage;
-        OnGetDamage.Invoke();
+        OnGetDamage.Invoke(hp);
     }
 }
