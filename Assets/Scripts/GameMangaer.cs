@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
+
 
 public class GameMangaer : MonoBehaviour
 {
@@ -28,7 +30,9 @@ public class GameMangaer : MonoBehaviour
     public int Score { get => score; }
     private int score = 0;
 
+    public List<ScoreWithNick> ListOfScoreWithNick = new List<ScoreWithNick>();
 
+    //public Dictionary<string, int> HighScores = new Dictionary<string, int>();
     public static GameMangaer Instance
     {
         get
@@ -49,6 +53,10 @@ public class GameMangaer : MonoBehaviour
     private void Awake()
     {
         SetThisInstanceToStaticIfInstaneIsNull();
+        if (instance != null)
+        {
+            SaveMenager.LoadScores();
+        }
     }
 
     public void AddOneToScore()
@@ -59,10 +67,10 @@ public class GameMangaer : MonoBehaviour
 
     public void ZeroScore()
     {
+        SaveScoreToHighScores();
         score = 0;
         OnScoreChange.Invoke(score);
     }
-
 
     private void SetThisInstanceToStaticIfInstaneIsNull()
     {
@@ -77,5 +85,12 @@ public class GameMangaer : MonoBehaviour
         }
     }
 
+    public void SaveScoreToHighScores()
+    {
+        //HighScores.Add(playerNick, score);
+        //HighScores.OrderBy(key => key.Value);
+        ListOfScoreWithNick.Add(new ScoreWithNick(playerNick, score));
+        ListOfScoreWithNick.Sort();
 
+    }
 }

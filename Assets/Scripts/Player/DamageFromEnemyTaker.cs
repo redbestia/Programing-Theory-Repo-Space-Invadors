@@ -6,8 +6,8 @@ public class DamageFromEnemyTaker : MonoBehaviour
 {
     [SerializeField] PlayerHp playerHp;
 
-    public bool IsItPlayer { get => isItPlayer; }
-    [SerializeField] private bool isItPlayer = false;
+    public bool IsDamagedByBullets { get => isDamagedByBullets; }
+    [SerializeField] private bool isDamagedByBullets = false;
 
 
     public void TakeDamage(int damage)

@@ -35,7 +35,7 @@ public class RocketBechviour : MonoBehaviour
         {
             if (other.transform.GetComponent<DamageFromEnemyTaker>() != null)
             {
-                if (other.transform.GetComponent<DamageFromEnemyTaker>().IsItPlayer == false)
+                if (other.transform.GetComponent<DamageFromEnemyTaker>().IsDamagedByBullets == false)
                 {
                     Destroy(gameObject);
                     return;
