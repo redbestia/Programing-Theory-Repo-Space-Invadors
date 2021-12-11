@@ -5,12 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData 
 {
-    public SaveData(List<ScoreWithNick> listOfScoreWithNick, string lastNick)
+    public SaveData(/*List<ScoreWithNick> listOfScoreWithNick,*/ string lastNick)
     {
-        ListOfScoreWithNick = listOfScoreWithNick;
+        //ListOfScoreWithNick = listOfScoreWithNick.ToArray();
         LastNick = lastNick;
     }
 
-    public List<ScoreWithNick> ListOfScoreWithNick;
+    //public ScoreWithNick[]  ListOfScoreWithNick;
     public string LastNick = "";
 }

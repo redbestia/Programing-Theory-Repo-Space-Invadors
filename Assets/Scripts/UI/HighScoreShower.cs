@@ -25,27 +25,10 @@ public class HighScoreShower : MonoBehaviour
 
         for (int i = 0; i < realNumberOfHighScores; i++)
         {
-            textToDisplay += "1. " + scoresWithNicks[i].Nick + ": "
-                + scoresWithNicks[i].Score.ToString() + "\n";
+            textToDisplay += (i+1) + ". " + scoresWithNicks[i].Nick + ": "
+                + scoresWithNicks[i].Score + "\n";
         }
 
         highScoresData.text = textToDisplay;
-
-        //if (scoresWithNicks.Count < numberOfHighScores)
-        //{
-        //    for (int i = 0; i < scoresWithNicks.Count; i++)
-        //    {
-        //        textToDisplay += "1. " + scoresWithNicks[i].Nick + ": "
-        //            + scoresWithNicks[i].Score.ToString() + "\n";
-        //    }
-        //}
-        //else
-        //{
-        //    for (int i = 0; i < numberOfHighScores; i++)
-        //    {
-        //        textToDisplay += "1. " + scoresWithNicks[i].Nick + ": "
-        //            + scoresWithNicks[i].Score.ToString() + "\n";
-        //    }
-        //}
     }
 }

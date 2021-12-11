@@ -91,6 +91,7 @@ public class GameMangaer : MonoBehaviour
         //HighScores.OrderBy(key => key.Value);
         ListOfScoreWithNick.Add(new ScoreWithNick(playerNick, score));
         ListOfScoreWithNick.Sort();
+        ListOfScoreWithNick.Reverse();
 
     }
 }

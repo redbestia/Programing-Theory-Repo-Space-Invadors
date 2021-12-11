@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 290332379}
   - component: {fileID: 290332380}
   - component: {fileID: 290332381}
+  - component: {fileID: 290332382}
   m_Layer: 0
   m_Name: This Scene Manger
   m_TagString: Untagged
@@ -454,6 +455,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b94f6601acbe4940b84904f07630ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &290332382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290332377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc65df702e03024791721f6d1cd9e03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &315681565
@@ -1853,6 +1866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNick: NoName
+  ListOfScoreWithNick: []
 --- !u!4 &1454514161
 Transform:
   m_ObjectHideFlags: 0
@@ -1951,6 +1965,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 290332382}
+        m_TargetAssemblyTypeName: Pauser, Assembly-CSharp
+        m_MethodName: GameUnpause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1478345285}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadThisScene

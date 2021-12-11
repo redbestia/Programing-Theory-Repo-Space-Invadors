@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class ScoreWithNick : IComparable<ScoreWithNick>
 {
     public ScoreWithNick(string nick,int score)
