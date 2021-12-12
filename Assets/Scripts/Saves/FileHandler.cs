@@ -7,13 +7,33 @@ using System.Linq;
 
 public static class FileHandler 
 {
+    public static void SaveToJson<T>(T toSave, string filename)
+    {
+        T data = toSave;
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + filename, json);
+    }
     public static void SaveToJson<T>(List<T> toSave,string filename)
     {
         string content = JsonHelper.ToJson<T>(toSave.ToArray());
         WritrFile(GetPath(filename),content);
     }
 
-    public static List<T> ReadFromJson<T>(string filename)
+    public static T ReadFromJson<T>(string filename) where T : class
+    {
+        string content = GetPath(filename);
+        if (string.IsNullOrEmpty(content) || content == "{}")
+        {
+            Debug.LogWarning("T is null or empty or {}");
+            return null;
+        }
+        string json = File.ReadAllText(content);
+        T res = JsonUtility.FromJson<T>(json);
+
+        return res;
+    }
+
+    public static List<T> ReadFromJsonToList<T>(string filename)
     {
         string content = ReadFile(GetPath(filename));
         if(string.IsNullOrEmpty(content)  || content == "{}")

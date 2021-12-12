@@ -11,26 +11,34 @@ public class SaveMenager : MonoBehaviour
 
     public static void SaveScores()
     {
-        SaveData data = new SaveData(GameMangaer.Instance.PlayerNick);
-        string json = JsonUtility.ToJson(data);
-        File.WriteAllText(Application.persistentDataPath + lastNameFile, json);
+        //SaveData data = new SaveData(GameMangaer.Instance.PlayerNick);
+        //string json = JsonUtility.ToJson(data);
+        //File.WriteAllText(Application.persistentDataPath + lastNameFile, json);
+
+        FileHandler.SaveToJson(new SaveData(GameMangaer.Instance.PlayerNick), lastNameFile);
 
         FileHandler.SaveToJson(GameMangaer.Instance.ListOfScoreWithNick, scoresWithNicksFileName);
     }
 
     public static void LoadScores()
     {
-        string path = Application.persistentDataPath + lastNameFile;
+        //string path = Application.persistentDataPath + lastNameFile;
 
-        if (File.Exists(path))
+        //if (File.Exists(path))
+        //{
+        //    string json = File.ReadAllText(path);
+        //    SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+        //    GameMangaer.Instance.PlayerNick = data.LastNick;
+        //}
+
+        if (FileHandler.ReadFromJson<SaveData>(lastNameFile) !=null)
         {
-            string json = File.ReadAllText(path);
-            SaveData data = JsonUtility.FromJson<SaveData>(json);
-
-            GameMangaer.Instance.PlayerNick = data.LastNick;
+            GameMangaer.Instance.PlayerNick = FileHandler.ReadFromJson<SaveData>(lastNameFile).LastNick;
         }
 
+
         GameMangaer.Instance.ListOfScoreWithNick = 
-            FileHandler.ReadFromJson<ScoreWithNick>(scoresWithNicksFileName);
+            FileHandler.ReadFromJsonToList<ScoreWithNick>(scoresWithNicksFileName);
     }
 }
