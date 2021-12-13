@@ -27,26 +27,14 @@ public class GameMangaer : MonoBehaviour
     [SerializeField] private string playerNick = DefultName;
     private const string DefultName = "NoName";
 
+    // ENCAPSULATION
     public int Score { get => score; }
     private int score = 0;
 
     public List<ScoreWithNick> ListOfScoreWithNick = new List<ScoreWithNick>();
 
-    //public Dictionary<string, int> HighScores = new Dictionary<string, int>();
-    public static GameMangaer Instance
-    {
-        get
-        {
-            if (instance != null)
-            {
-               return instance;
-            }
-            else
-            {
-                return null;
-            }
-        } 
-    }
+    // ENCAPSULATION
+    public static GameMangaer Instance { get => instance; }
     private static GameMangaer instance;
 
     public event Action<int> OnScoreChange = delegate { };
@@ -59,12 +47,16 @@ public class GameMangaer : MonoBehaviour
         }
     }
 
+    // ENCAPSULATION
+    // ABSTRACTION
     public void AddOneToScore()
     {
         score++;
         OnScoreChange.Invoke(score);
     }
 
+    // ENCAPSULATION
+    // ABSTRACTION
     public void ZeroScore()
     {
         SaveScoreToHighScores();
@@ -72,6 +64,7 @@ public class GameMangaer : MonoBehaviour
         OnScoreChange.Invoke(score);
     }
 
+    // ABSTRACTION
     private void SetThisInstanceToStaticIfInstaneIsNull()
     {
         if (instance == null)
@@ -87,8 +80,6 @@ public class GameMangaer : MonoBehaviour
 
     public void SaveScoreToHighScores()
     {
-        //HighScores.Add(playerNick, score);
-        //HighScores.OrderBy(key => key.Value);
         ListOfScoreWithNick.Add(new ScoreWithNick(playerNick, score));
         ListOfScoreWithNick.Sort();
         ListOfScoreWithNick.Reverse();

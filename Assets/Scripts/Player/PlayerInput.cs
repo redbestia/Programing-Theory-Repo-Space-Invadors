@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public  bool IsLeftArrowPressed { get => isLeftArrowPressed;}
+    // ENCAPSULATION
+    public bool IsLeftArrowPressed { get => isLeftArrowPressed;}
     private  bool isLeftArrowPressed = false;
     public  bool IsRightArrowPress { get => isRightArrowPress; }
     private  bool isRightArrowPress = false;

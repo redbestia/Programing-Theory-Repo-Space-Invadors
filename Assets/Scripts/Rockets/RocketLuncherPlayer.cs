@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class RocketLuncherPlayer : RocketLuncher
 {
+
     [SerializeField] PlayerInput input;
 
     private void Update()

@@ -5,6 +5,7 @@ using System.IO;
 using System;
 using System.Linq;
 
+//ABSTRACTION
 public static class FileHandler 
 {
     public static void SaveToJson<T>(T toSave, string filename)
@@ -21,13 +22,21 @@ public static class FileHandler
 
     public static T ReadFromJson<T>(string filename) where T : class
     {
-        string content = GetPath(filename);
-        if (string.IsNullOrEmpty(content) || content == "{}")
+        string path = GetPath(filename);
+        if (!File.Exists(path))
+        {
+            Debug.LogWarning("File dosn't exist, path: " + path);
+            return null;
+        }
+
+        string json = File.ReadAllText(path);
+
+        if (string.IsNullOrEmpty(path) || path == "{}")
         {
             Debug.LogWarning("T is null or empty or {}");
             return null;
         }
-        string json = File.ReadAllText(content);
+        
         T res = JsonUtility.FromJson<T>(json);
 
         return res;
@@ -36,7 +45,14 @@ public static class FileHandler
     public static List<T> ReadFromJsonToList<T>(string filename)
     {
         string content = ReadFile(GetPath(filename));
-        if(string.IsNullOrEmpty(content)  || content == "{}")
+
+        if (string.IsNullOrEmpty(content) || content == "{}")
+        {
+            Debug.LogWarning("T is null or empty or {}");
+            return new List<T>(); 
+        }
+
+        if (string.IsNullOrEmpty(content)  || content == "{}")
         {
             return new List<T>();
         }

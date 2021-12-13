@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class Scout : Enemy
 {
     [SerializeField] private float sideSpeed = 1000;
@@ -10,6 +11,7 @@ public class Scout : Enemy
     private int sideChenger;
     private Vector3 lastPositionChange;
 
+    // POLYMORPHISM
     protected override void Start()
     {
         base.Start();

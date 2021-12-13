@@ -18,7 +18,7 @@ public class RocketBechviour : MonoBehaviour
         rigidbody.AddRelativeForce(Vector3.forward * baseSpeed);
     }
 
-   
+    //Checking hitted object
     private void OnTriggerEnter(Collider other)
     {
         if (typeOfRocket == RocketType.PlayerRocket)

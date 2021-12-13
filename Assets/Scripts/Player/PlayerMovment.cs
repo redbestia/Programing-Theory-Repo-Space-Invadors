@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovment : PlayerInput
+public class PlayerMovment : MonoBehaviour
 {
 
     [SerializeField] PlayerInput input;

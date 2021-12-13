@@ -5,6 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerHp : MonoBehaviour
 {
+    // ENCAPSULATION
     public int Hp
     {
         get => hp; 

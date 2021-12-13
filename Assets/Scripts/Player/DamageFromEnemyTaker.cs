@@ -6,6 +6,7 @@ public class DamageFromEnemyTaker : MonoBehaviour
 {
     [SerializeField] PlayerHp playerHp;
 
+    // ENCAPSULATION
     public bool IsDamagedByBullets { get => isDamagedByBullets; }
     [SerializeField] private bool isDamagedByBullets = false;
 
@@ -15,13 +16,4 @@ public class DamageFromEnemyTaker : MonoBehaviour
         playerHp.GetDamage(damage);
     }
 
-
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if(collision.transform.GetComponent<Enemy>() != null)
-    //    {
-            
-    //    }
-
-    //}
 }

@@ -12,7 +12,6 @@ public class RocketLuncher : MonoBehaviour
     {
         if (lastTimeShot > Time.time) return;
         
-        //Instantiate(rocketPrefab, transform.position, Quaternion.AngleAxis(1, rotation));
         Instantiate(rocketPrefab, transform.position, Quaternion.Euler(rotation));
         lastTimeShot = Time.time + reaoladTime;
     }

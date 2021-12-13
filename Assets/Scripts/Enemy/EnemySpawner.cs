@@ -44,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
             CurrentSpawnTime(startMaxSpawnTime,endMaxSpawnTime));
     }
 
+    // ABSTRACTION
     float CurrentSpawnTime(float start,float end)
     {
         if (Time.time - timeOfStartThis < timeWhenMaxSpawnRate)
