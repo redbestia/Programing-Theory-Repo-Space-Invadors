@@ -87,4 +87,10 @@ public class PlayerInput : MonoBehaviour
             is_D_Press = false;
         }
     }
+
+    void GetCursorRaycast()
+    {
+        RaycastHit hit;
+        Ray landingRay;
+    }
 }
