@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    public Camera CurrentCmaera;
+
+
+    [SerializeField] private LayerMask cursorCatcher;
+
     // ENCAPSULATION
     public bool IsLeftArrowPressed { get => isLeftArrowPressed;}
     private  bool isLeftArrowPressed = false;
@@ -19,11 +24,13 @@ public class PlayerInput : MonoBehaviour
     private bool is_S_Press = false;
     public  bool Is_D_Press { get => is_D_Press; }
     private  bool is_D_Press = false;
-   
-
+    public Vector3 CursorPosition {get => cursorPosition;}
+    private Vector3 cursorPosition = Vector3.zero;
 
     private void Update()
     {
+        cursorPosition = GetCursorPosition();
+
         if(Input.GetKey(KeyCode.LeftArrow))
         {
             isLeftArrowPressed = true;
@@ -88,9 +95,10 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void GetCursorRaycast()
+    Vector3 GetCursorPosition()
     {
-        RaycastHit hit;
-        Ray landingRay;
+        Ray ray = CurrentCmaera.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, cursorCatcher);
+        return hit.point;
     }
 }
