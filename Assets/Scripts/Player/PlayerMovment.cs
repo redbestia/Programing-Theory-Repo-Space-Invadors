@@ -25,17 +25,12 @@ public class PlayerMovment : MonoBehaviour
         rotationChecker.localPosition = rigidbody.centerOfMass;
     }
 
-    private Vector3 last;
     private void FixedUpdate()
     {
         HorizontalMove();
         VerdicalMove();
         cursorPointer.LookAt(new Vector3(input.CursorPosition.x, transform.position.y, input.CursorPosition.z));
         RotateToCursor();
-    }
-
-    private void Update()
-    {
     }
 
     private void VerdicalMove()
@@ -106,65 +101,44 @@ public class PlayerMovment : MonoBehaviour
 
         Vector2 dotVector = new Vector2(normalDeltaForward, normalDeltaRight);
 
-
-        //if (dotVector.y > -0.02 && dotVector.y < 0.02)
-        //    return;
-
-        //if (dotVector.y == 0f)
-        //{
-        //    Debug.Log("Rotation Stay");
-        //}
-
-
         if (dotVector.y >= 0f)
         {
-            RotateRight(dotVector);
+            Rotate(dotVector,false);
         }
         else
         {
-            RotateLeft(dotVector);
+            Rotate(dotVector,true);
         }
     }
 
-    private void RotateRight(Vector2 dotVector)
+    private void Rotate(Vector2 dotVector, bool isLeft)
     {
-        Quaternion targetRotation = Quaternion.Euler(rotationSpeedVector * Time.fixedDeltaTime) * rigidbody.rotation;
+        float rotationMultiplier;
+        if (isLeft)
+            rotationMultiplier = -1;
+        else
+            rotationMultiplier = 1;
+
+        Quaternion targetRotation = Quaternion.Euler(rotationSpeedVector * Time.fixedDeltaTime * rotationMultiplier) * rigidbody.rotation;
         rotationChecker.rotation = targetRotation;
 
         var normalDeltaForward = Vector3.Dot(cursorPointer.forward, rotationChecker.forward);
         var normalDeltaRight = Vector3.Dot(cursorPointer.forward, rotationChecker.right);
         Vector2 chceckerDotVector = new Vector2(normalDeltaForward, normalDeltaRight);
 
-        if (chceckerDotVector.y >= 0)
+        bool isNormalMove;
+        if (isLeft)
+            isNormalMove = chceckerDotVector.y <= 0;
+        else
+            isNormalMove = chceckerDotVector.y >= 0;
+
+        if (isNormalMove)
         {
             rigidbody.MoveRotation(targetRotation);
-            Debug.Log("Rotation Right move" + dotVector.x + " " + dotVector.y + " | " + chceckerDotVector.x + " " + chceckerDotVector.y);
         }
         else
         {
             rigidbody.MoveRotation(cursorPointer.rotation);
-            Debug.Log("Rotation Right complited " + dotVector.x + " " + dotVector.y + " | " + chceckerDotVector.x + " " + chceckerDotVector.y);
         }
     }
-
-    private void RotateLeft(Vector2 dotVector)
-    {
-        Quaternion targetRotation = rigidbody.rotation * Quaternion.Euler(rotationSpeedVector * -Time.fixedDeltaTime);
-
-        var normalDeltaForward = Vector3.Dot(cursorPointer.forward, rotationChecker.forward);
-        var normalDeltaRight = Vector3.Dot(cursorPointer.forward, rotationChecker.right);
-        Vector2 chceckerDotVector = new Vector2(normalDeltaForward, normalDeltaRight);
-
-        if (chceckerDotVector.y <= 0)
-        {
-            rigidbody.MoveRotation(targetRotation);
-            Debug.Log("Rotation Left move" + dotVector.x + " " + dotVector.y + " | " + chceckerDotVector.x + " " + chceckerDotVector.y);
-        }
-        else
-        {
-            rigidbody.MoveRotation(cursorPointer.rotation);
-            Debug.Log("Rotation Left complited" + dotVector.x + " " + dotVector.y + " | " + chceckerDotVector.x + " " + chceckerDotVector.y);
-        }
-    }
-
 }
